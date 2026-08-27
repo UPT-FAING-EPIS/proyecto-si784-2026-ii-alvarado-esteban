@@ -1,23 +1,46 @@
-OWASP Guard: Sistema inteligente para el análisis y evaluación automatizada de prácticas de seguridad en código fuente
+Desarrollo de un analizador estático inteligente para la evaluación automatizada de controles de seguridad basados en OWASP Top 10:2025 en código fuente Python y JavaScript
 
-Actualmente, el desarrollo de aplicaciones de software enfrenta el riesgo de incorporar vulnerabilidades de seguridad desde las propias etapas de programación. Estas pueden originarse por prácticas inadecuadas como la falta de controles de acceso, manejo inseguro de información, errores en la autenticación, inyecciones, configuraciones inseguras y otras debilidades presentes en el código fuente.
-El OWASP Top 10 constituye una referencia ampliamente utilizada para identificar los riesgos de seguridad más importantes en aplicaciones web. En su edición 2021, OWASP contempla categorías como pérdida de control de acceso, fallas criptográficas, inyección, diseño inseguro, configuración de seguridad incorrecta, componentes vulnerables y desactualizados, fallas de identificación y autenticación, entre otras.
-Uno de los problemas es que la identificación de estas deficiencias puede requerir una revisión detallada del código fuente. OWASP señala que la revisión de código permite identificar problemas de seguridad que pueden ser difíciles de encontrar mediante otras técnicas de análisis. Además, la revisión segura requiere analizar aspectos como la lógica de la aplicación, el flujo de datos y los detalles de implementación, actividades que pueden demandar tiempo y conocimientos especializados.
-Por otro lado, OWASP recomienda utilizar su Top 10 como una referencia o línea base para iniciar actividades de seguridad de aplicaciones, pero reconoce que no constituye por sí solo un programa completo de seguridad. Esto evidencia la necesidad de contar con mecanismos complementarios que permitan aplicar determinadas prácticas de seguridad de forma sistemática y repetible durante la revisión del código.
-Ante esta situación, se propone desarrollar OWASP Guard, un sistema que permita cargar un proyecto o código fuente y realizar un análisis automatizado mediante 10 reglas de seguridad basadas en prácticas y categorías del OWASP Top 10. El sistema identificará los problemas encontrados indicando el archivo y la línea afectada, clasificará cada hallazgo según su nivel de riesgo, explicará el problema y proporcionará una recomendación para su corrección.
-Además, OWASP Guard generará un Security Score de 0 a 100 y un dashboard con información resumida sobre el estado de seguridad del proyecto. De esta manera, la herramienta permitirá transformar los resultados del análisis en información comprensible y medible, facilitando la identificación y priorización de problemas de seguridad en el código fuente.
+Actualmente, muchas vulnerabilidades de seguridad en aplicaciones web se originan durante la etapa de desarrollo debido a prácticas incorrectas de programación, configuraciones inseguras o falta de validación de controles de seguridad. La detección temprana de estos problemas resulta fundamental, ya que corregir vulnerabilidades después del despliegue implica mayores costos económicos, riesgos operativos y exposición de información sensible.
+Según OWASP (2025), las aplicaciones modernas continúan presentando riesgos asociados a problemas como control de acceso deficiente, fallos criptográficos, inyección de código, configuraciones inseguras y fallos en la gestión de componentes externos. Estas vulnerabilidades pueden ser introducidas accidentalmente por los desarrolladores debido a desconocimiento, falta de herramientas de revisión o ausencia de procesos automatizados de seguridad durante el ciclo de desarrollo.
+Asimismo, herramientas tradicionales de análisis de seguridad como OWASP ZAP, SonarQube, Semgrep y Bearer CLI ofrecen capacidades importantes para identificar vulnerabilidades; sin embargo, muchas requieren configuraciones adicionales, poseen alcances generales o están enfocadas en diferentes etapas del ciclo de desarrollo, lo que puede dificultar su adaptación para una evaluación específica basada en controles del OWASP Top 10:2025.
+De acuerdo con OWASP (2025), incorporar mecanismos de seguridad desde las primeras fases del desarrollo permite aplicar el enfoque de Security by Design, reduciendo la probabilidad de introducir vulnerabilidades en el software final.
+Por ello, surge la necesidad de desarrollar un sistema de análisis estático que permita evaluar automáticamente el código fuente de proyectos desarrollados en Python y JavaScript, identificando patrones inseguros relacionados con OWASP Top 10:2025, generando resultados cuantificables sobre el nivel de cumplimiento de controles de seguridad y proporcionando recomendaciones de mejora.
 
-Objetivos de investigación y solución medibles
+Objetivos de investigación
+Objetivo general de investigación
 
-Objetivo general:
-- Desarrollar OWASP Guard, un sistema inteligente capaz de analizar automáticamente código fuente y evaluar su cumplimiento respecto a un conjunto definido de prácticas de seguridad basadas en OWASP, proporcionando detección, clasificación, explicación y recomendaciones de solución de los problemas encontrados.
+Analizar y desarrollar un modelo de evaluación automatizada basado en análisis estático que permita identificar vulnerabilidades y medir el nivel de cumplimiento de controles de seguridad establecidos en OWASP Top 10:2025 para proyectos desarrollados en Python y JavaScript.
 
-Objetivos específicos:
-- Implementar 10 reglas automatizadas de análisis de seguridad basadas en categorías y prácticas del OWASP Top 10, verificando que cada regla pueda identificar un patrón de código asociado con una práctica insegura.
-- Detectar los problemas de seguridad indicando el archivo y la línea de código afectada, logrando que el sistema proporcione una ubicación específica para cada hallazgo identificado.
-- Clasificar automáticamente los hallazgos en cuatro niveles de riesgo —crítico, alto, medio y bajo— de acuerdo con criterios definidos para el proyecto.
-- Generar una explicación para el 100 % de los hallazgos detectados, indicando qué práctica de seguridad se incumple y por qué representa un riesgo.
-- Proporcionar recomendaciones de solución para el 100 % de las reglas implementadas, orientadas a corregir las prácticas inseguras identificadas.
-- Implementar un Security Score de 0 a 100 que permita representar cuantitativamente el nivel de cumplimiento de seguridad de cada proyecto analizado.
-- Desarrollar un dashboard de resultados que muestre como mínimo la puntuación de seguridad, cantidad de problemas por nivel de riesgo, archivos analizados y reglas incumplidas.
-- Evaluar la efectividad del sistema utilizando proyectos de prueba con vulnerabilidades conocidas, calculando el porcentaje de vulnerabilidades detectadas por OWASP Guard.
+Objetivos específicos de investigación
+Identificar los principales controles de seguridad definidos en OWASP Top 10:2025 aplicables al análisis estático de código fuente.
+Determinar patrones de programación insegura asociados a vulnerabilidades como inyección, fallos criptográficos, configuraciones inseguras y problemas de control de acceso.
+Comparar las capacidades y limitaciones de herramientas existentes de análisis estático y dinámico como SonarQube, Semgrep, Bearer CLI y OWASP ZAP.
+Definir una metodología de evaluación que permita calcular indicadores de cumplimiento de seguridad por regla, categoría OWASP y proyecto analizado.
+Evaluar la precisión del analizador mediante pruebas sobre proyectos con vulnerabilidades conocidas.
+
+Objetivos de solución medibles
+Objetivo general de solución
+Implementar un analizador estático denominado OWASP Guard, capaz de revisar código fuente Python y JavaScript, detectar malas prácticas de seguridad relacionadas con OWASP Top 10:2025 y generar un reporte cuantitativo del nivel de cumplimiento.
+
+Objetivos específicos de solución
+Objetivo	Indicador medible
+Implementar un motor de análisis estático para código Python y JavaScript	Analizar correctamente archivos .py y .js
+Implementar reglas de detección basadas en OWASP Top 10:2025	Desarrollar mínimo 20 reglas de seguridad
+Detectar vulnerabilidades mediante patrones de código inseguro	Identificar al menos 80% de vulnerabilidades introducidas en casos de prueba controlados
+Generar reportes de resultados de seguridad	Crear reportes con vulnerabilidad encontrada, severidad, ubicación y recomendación
+Calcular nivel de cumplimiento OWASP del proyecto analizado	Mostrar porcentaje global y por categoría OWASP
+Diseñar una arquitectura escalable	Permitir agregar nuevas reglas y lenguajes sin modificar el núcleo principal
+Evaluar el funcionamiento del sistema	Ejecutar pruebas sobre mínimo 5 proyectos vulnerables y comparar resultados
+Variables principales de investigación
+
+Fuentes
+OWASP Foundation. (2025). OWASP Top 10:2025 – The Ten Most Critical Web Application Security Risks.
+https://owasp.org/www-project-top-ten/
+OWASP Foundation. (2021). OWASP Application Security Verification Standard (ASVS).
+https://owasp.org/www-project-application-security-verification-standard/
+SonarSource. (2025). SonarQube Documentation: Code Quality and Security Analysis.
+https://docs.sonarsource.com/
+Semgrep. (2025). Semgrep Documentation: Static Application Security Testing.
+https://semgrep.dev/docs/
+OWASP. (2025). OWASP Zed Attack Proxy (ZAP) Documentation.
+https://www.zaproxy.org/docs/
